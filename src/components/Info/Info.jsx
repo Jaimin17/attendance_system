@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-export default function Home() {
+export default function Info() {
     return (
-        <h1 className=''>DE Project</h1>
+        <h1 className=''>Information</h1>
     );
 }

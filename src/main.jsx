@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Layout from './Layout.jsx'
 import Home from './components/Home/Home'
 import Login from './components/login/Login.jsx'
 import SignUp from './components/signup/SignUp.jsx'
+import Dashboard from './components/Dashboard/Dashboard.jsx'
 
 
 const router = createBrowserRouter(
@@ -15,6 +15,8 @@ const router = createBrowserRouter(
       <Route path='/' element={<Home />}/>
       <Route path='/login' element={<Login />}/>
       <Route path='/signup' element={<SignUp />}/>
+      <Route path='/dashboard' element={<Dashboard />}/>
+
     </Route>
   )
 )
