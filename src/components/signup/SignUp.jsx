@@ -30,6 +30,11 @@ const SignUp = () => {
                                 </div>
                             </div>
                             <div>
+                                <label for="enrollmentNo" className="block mb-2 text-sm font-medium text-gray-900 ">Enrollment Number</label>
+                                <input type="text" name="enrollmentNo" id="enrollmentNo" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 " placeholder="" required="" />
+                            </div>
+
+                            <div>
                                 <label for="email" className="block mb-2 text-sm font-medium text-gray-900 ">Email Id</label>
                                 <input type=" email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 " placeholder="" required="" />
                             </div>
