@@ -10,6 +10,8 @@ const port = 5500;
 
 app.use(json());
 
+app.use("/api/auth", require("./routes/auth"));
+
 app.get("/", (req, res) => {
     res.send("Hello Dobuuu❤");
 });
