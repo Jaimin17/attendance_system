@@ -10,7 +10,8 @@ const port = 5500;
 
 app.use(json());
 
-app.use("/api/auth", require("./routes/auth"));
+app.use("/api/auth/student/", require("./routes/student"));
+app.use("/api/auth/teacher/", require("./routes/teacher"));
 
 app.get("/", (req, res) => {
     res.send("Hello Dobuuu❤");
