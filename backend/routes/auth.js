@@ -34,12 +34,10 @@ router.post(
       // check if already a user exist with same email
       let user = await Student.findOne({ email: req.body.email });
       if (user) {
-        return res
-          .status(400)
-          .json({
-            success,
-            error: "Sorry, a user with same email already exist!",
-          });
+        return res.status(400).json({
+          success,
+          error: "Sorry, a user with same email already exist!",
+        });
       }
 
       // create new user
@@ -95,12 +93,10 @@ router.post(
       let student = await Student.findOne({ email: req.body.email });
 
       if (!student) {
-        return res
-          .status(400)
-          .json({
-            success: false,
-            error: "Please try to login with correct credential",
-          });
+        return res.status(400).json({
+          success: false,
+          error: "Please try to login with correct credential",
+        });
       }
 
       const passwordCompare = await bcrypt.compare(
@@ -108,12 +104,10 @@ router.post(
         student.password
       );
       if (!passwordCompare) {
-        return res
-          .status(400)
-          .json({
-            success: false,
-            error: "Please try to login with correct credential",
-          });
+        return res.status(400).json({
+          success: false,
+          error: "Please try to login with correct credential",
+        });
       }
 
       const data = {
@@ -181,5 +175,37 @@ router.put(
     }
   }
 );
+
+router.put("/updateStudent", fetchStudent, async (req, res) => {
+  const { name, email, phoneNo } = req.body;
+  try {
+    const newNode = {};
+    if (name) {
+      newNode.name = name;
+    }
+    if (email) {
+      newNode.email = email;
+    }
+    if (phoneNo) {
+      newNode.phoneNo = phoneNo;
+    }
+
+    let student = await Student.findById(req.user.id);
+    if (!student) {
+      return res.status(404).send("Student not Found!");
+    }
+
+    student = await Student.findByIdAndUpdate(
+      req.user.id,
+      {
+        $set: newNode,
+      },
+      { new: true }
+    );
+    return res.send(student);
+  } catch (error) {
+    res.status(500).send("Internal server error!");
+  }
+});
 
 module.exports = router;
