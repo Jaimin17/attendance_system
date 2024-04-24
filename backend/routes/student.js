@@ -177,4 +177,36 @@ router.put(
     }
 );
 
+router.put("/update", fetchStudent, async (req, res) => {
+    const { name, email, phoneNo } = req.body;
+    try {
+      const newNode = {};
+      if (name) {
+        newNode.name = name;
+      }
+      if (email) {
+        newNode.email = email;
+      }
+      if (phoneNo) {
+        newNode.phoneNo = phoneNo;
+      }
+  
+      let student = await Student.findById(req.user.id);
+      if (!student) {
+        return res.status(404).send("Student not Found!");
+      }
+  
+      student = await Student.findByIdAndUpdate(
+        req.user.id,
+        {
+          $set: newNode,
+        },
+        { new: true }
+      );
+      return res.send(student);
+    } catch (error) {
+      res.status(500).send("Internal server error!");
+    }
+  });
+
 module.exports = router;
